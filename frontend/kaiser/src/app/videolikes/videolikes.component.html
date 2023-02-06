@@ -1,0 +1,40 @@
+<header>
+  <h2>
+    <u>
+      <p>videolikes works!</p>
+    </u>
+  </h2>
+</header>
+<div *ngIf="enableVideoInfo">
+<p-table [value]="videoLikesDto" styleClass="p-datatable-gridlines">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Video Name</th>
+        <th>Likes</th>
+        <th>Select Likes</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-videoLikes >
+      <tr>
+        <td>{{videoLikes.name}}</td>
+        <td>{{videoLikes.likes}}</td>
+        <td>
+          <div class="field-checkbox" class="my-center-text">
+            <p-checkbox [(ngModel)]="videoLikes.selectedLikes" (onChange)="totalLikes($event, videoLikes.likes)" name="group1" [binary]=true></p-checkbox>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <tr>
+          <td>Total Likes</td>
+          <td>{{newTotalCounter}}</td>
+          <td></td>
+        </tr>
+  </ng-template>
+</p-table>
+</div>
+<p-button label="Switch Table On or Off!" (click)="switchVideoLikesInfo()" style="float: left;"></p-button>
+<p-button label="Count Likes" (click)="countLikesInfo()" style="float: right;"></p-button>
+
+<br><br>
